@@ -15,7 +15,7 @@ def extract_job(result):
 def job_search(last_page):
     job = []
     for page in range(int(last_page)):
-        print(page)
+        print(f"stack : {page}")
         result = requests.get(f"{URL}&pg={page}")
         soup = BeautifulSoup(result.text, "lxml")
         results = soup.find_all("div",{"class":"-job"})
@@ -37,5 +37,7 @@ def max_page():
         last_page = page[-1]
     return last_page
 
-last_page = max_page()
-print(job_search(last_page))
+def get_job():
+    last_page = max_page()
+    job = job_search(last_page)
+    return job
